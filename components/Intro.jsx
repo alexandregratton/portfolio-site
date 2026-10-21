@@ -1,7 +1,6 @@
 import { useRef } from 'react'
 import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
-import { isReduced } from '../lib/motion'
 import { GSDevTools } from 'gsap/GSDevTools'
 import { getData } from '../lib/data/data.js'
 
@@ -9,16 +8,10 @@ gsap.registerPlugin(GSDevTools)
 
 export default function Intro({ onDone, language  }) {
     const root = useRef(null)
-    const { profile, projects, skills, statement } = getData(language);
+    const { profile, traductions, projects, skills, statement } = getData(language);
 
     useGSAP(
         () => {
-            if (isReduced()) {
-                gsap.set(root.current, { display: 'none' })
-                onDone()
-                return
-            }
-
             gsap.set('.intro__inner', { visibility: 'visible' })
             const counter = { v: 0 }
             const num = root.current.querySelector('.intro__count')

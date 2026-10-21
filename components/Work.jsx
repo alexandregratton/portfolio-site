@@ -1,7 +1,6 @@
 import { useRef, useState } from 'react'
 import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
-import { isFinePointer, isReduced } from '../lib/motion'
 import { getData } from '../lib/data/data.js'
 
 
@@ -10,36 +9,10 @@ export default function Work({ language }) {
     const preview = useRef(null)
     const videoRef = useRef(null)
     const [active, setActive] = useState(null)
-    const { profile, projects, skills, statement } = getData(language);
+    const { profile, traductions, projects, skills, statement } = getData(language);
 
     useGSAP(
         () => {
-            if (!isReduced()) {
-                gsap.from('.work__heading', {
-                    yPercent: 40,
-                    opacity: 0,
-                    duration: 1,
-                    ease: 'power4.out',
-                    scrollTrigger: { trigger: '.work__heading', start: 'top 85%' },
-                })
-
-                gsap.utils.toArray('.row').forEach((row) => {
-                    const tl = gsap.timeline({ scrollTrigger: { trigger: row, start: 'top 88%' } })
-                    tl.from(row.querySelector('.row__rule'), {
-                        scaleX: 0,
-                        transformOrigin: 'left',
-                        duration: 1,
-                        ease: 'power3.inOut',
-                    }).from(
-                        row.querySelectorAll('.row__cell'),
-                        { y: 30, opacity: 0, duration: 0.8, ease: 'power3.out', stagger: 0.07 },
-                        '-=0.7'
-                    )
-                })
-            }
-
-            if (!isFinePointer()) return
-
             const card = preview.current
             gsap.set(card, { xPercent: -50, yPercent: -50, scale: 0 })
             const xTo = gsap.quickTo(card, 'x', { duration: 0.5, ease: 'power3' })
@@ -95,7 +68,6 @@ export default function Work({ language }) {
 
     useGSAP(
         () => {
-            if (!isFinePointer()) return
             const p = active === null ? null : projects[active]
             if (p) {
 
@@ -124,7 +96,7 @@ export default function Work({ language }) {
     return (
         <section className="work" id="projets" ref={root}>
             <div className="section__head">
-                <h2 className="work__heading">Projets</h2>
+                <h2 className="work__heading">{traductions.worksH1}</h2>
                 <span className="section__count label">{projects.length} projets</span>
             </div>
 

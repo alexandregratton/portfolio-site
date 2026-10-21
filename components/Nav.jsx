@@ -2,7 +2,6 @@
 import { useRef } from 'react'
 import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
-import { isReduced } from '../lib/motion'
 import { getData } from '../lib/data/data.js'
 
 export default function Nav({ ready, language, setLanguage }) {
@@ -15,7 +14,6 @@ export default function Nav({ ready, language, setLanguage }) {
 
     useGSAP(
         () => {
-            if (isReduced()) return
             gsap.set(root.current, { yPercent: -100, opacity: 0 })
         },
         { scope: root }
@@ -23,8 +21,6 @@ export default function Nav({ ready, language, setLanguage }) {
 
     useGSAP(
         () => {
-            if (isReduced() || !ready) return
-
             gsap.to(root.current, {
                 yPercent: 0,
                 opacity: 1,
@@ -51,7 +47,7 @@ export default function Nav({ ready, language, setLanguage }) {
                 <a href="#apropos">{navLabels.about}</a>
                 <a href="#contact">{navLabels.contact}</a>
 
-                <button onClick={toggleLanguage} aria-label="Change language">
+                <button className='nav__language' onClick={toggleLanguage} aria-label="Change language">
                     {language === 'fr' ? 'EN' : 'FR'}
                 </button>
             </nav>

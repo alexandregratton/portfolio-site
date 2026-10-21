@@ -1,16 +1,14 @@
 import { useRef } from 'react'
 import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
-import { isReduced } from '../lib/motion'
 import { getData } from "../lib/data/data.js";
 
 export default function About({ language }) {
     const root = useRef(null)
-    const { profile, projects, skills, statement } = getData(language);
+    const { profile, traductions, projects, skills, statement } = getData(language);
 
     useGSAP(
         () => {
-            if (isReduced()) return
 
             gsap.fromTo(
                 '.word',
@@ -43,7 +41,7 @@ export default function About({ language }) {
     return (
         <section className="about" id="apropos" ref={root}>
             <div className="section__head">
-                <h2>À propos</h2>
+                <h2>{traductions.aboutH1}</h2>
             </div>
 
             <p className="about__statement">

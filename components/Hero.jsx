@@ -1,7 +1,6 @@
 import { useRef } from 'react'
 import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
-import { isReduced } from '../lib/motion'
 import { getData } from '../lib/data/data.js'
 
 function Chars({ text }) {
@@ -12,13 +11,12 @@ function Chars({ text }) {
     ))
 }
 
-export default function Hero({ ready, language  }) {
+export default function Hero({ ready, language }) {
     const root = useRef(null)
-    const { profile, projects, skills, statement } = getData(language);
-
+    const { profile, traductions, projects, skills, statement } = getData(language);
+    
     useGSAP(
         () => {
-            if (isReduced()) return
             gsap.set('.char', { yPercent: 115 })
             gsap.set('.fade', { opacity: 0, y: 24 })
 
@@ -33,7 +31,7 @@ export default function Hero({ ready, language  }) {
 
     useGSAP(
         () => {
-            if (isReduced() || !ready) return
+            if (!ready) return
             const tl = gsap.timeline({ delay: 0.15 })
             tl.to('.char', { yPercent: 0, duration: 1.1, ease: 'power4.out', stagger: 0.05 })
                 .to('.fade', { opacity: 1, y: 0, duration: 0.9, ease: 'power3.out', stagger: 0.12 }, '-=0.6')
@@ -60,7 +58,7 @@ export default function Hero({ ready, language  }) {
             <div className="hero__bottom">
                 <p className="hero__intro fade">{profile.intro}</p>
                 <a href="#projets" className="hero__scroll label fade">
-                    Défiler <span aria-hidden="true">↓</span>
+                    {traductions.scrollIndicator} <span aria-hidden="true">↓</span>
                 </a>
             </div>
         </section>

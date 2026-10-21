@@ -5,7 +5,6 @@ import Lenis from 'lenis'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
-import { isReduced } from '../lib/motion'
 import Intro from './Intro'
 import Nav from './Nav'
 import Cursor from './Cursor'
@@ -23,7 +22,6 @@ export default function Site() {
     const [language, setLanguage] = useState('fr')
 
     useEffect(() => {
-        if (isReduced()) return
         const lenis = new Lenis({ lerp: 0.1, anchors: true })
         lenis.on('scroll', ScrollTrigger.update)
         const tick = (t) => lenis.raf(t * 1000)
