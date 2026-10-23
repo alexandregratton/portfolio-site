@@ -6,7 +6,7 @@ import { getData } from '../lib/data/data.js'
 
 gsap.registerPlugin(GSDevTools)
 
-export default function Intro({ onDone, language  }) {
+export default function Intro({ onDone, language }) {
     const root = useRef(null)
     const { profile, traductions, projects, skills, statement } = getData(language);
 

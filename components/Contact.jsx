@@ -38,6 +38,7 @@ export default function Contact({ language }) {
             <h2 className="contact__title">
                 <span className="line">
                     <span>{traductions.contactH1Line01}</span>
+                    <br />
                     <span className="accent">{traductions.contactH1Line02}</span>
                 </span>
             </h2>

@@ -2,6 +2,7 @@ import { useRef } from 'react'
 import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
 import { getData } from '../lib/data/data.js'
+import dynamic from 'next/dynamic'
 
 function Chars({ text }) {
     return text.split('').map((c, i) => (
@@ -14,12 +15,11 @@ function Chars({ text }) {
 export default function Hero({ ready, language }) {
     const root = useRef(null)
     const { profile, traductions, projects, skills, statement } = getData(language);
-    
+
     useGSAP(
         () => {
             gsap.set('.char', { yPercent: 115 })
             gsap.set('.fade', { opacity: 0, y: 24 })
-
             gsap.to('.hero__title', {
                 yPercent: 22,
                 ease: 'none',

@@ -19,16 +19,15 @@ export default function Nav({ ready, language, setLanguage }) {
         { scope: root }
     )
 
-    useGSAP(
-        () => {
-            gsap.to(root.current, {
-                yPercent: 0,
-                opacity: 1,
-                duration: 0.9,
-                delay: 0.5,
-                ease: 'power3.out',
-            })
-        },
+    useGSAP(() => {
+        gsap.to(root.current, {
+            yPercent: 0,
+            opacity: 1,
+            duration: 0.9,
+            delay: 0.5,
+            ease: 'power3.out',
+        })
+    },
         { scope: root, dependencies: [ready] }
     )
 
