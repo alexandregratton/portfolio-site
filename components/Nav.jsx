@@ -14,7 +14,7 @@ export default function Nav({ ready, language, setLanguage }) {
 
     useGSAP(
         () => {
-            gsap.set(root.current, { yPercent: -100, opacity: 0 })
+            gsap.set(root.current, { yPercent: 100, opacity: 0 })
         },
         { scope: root }
     )
@@ -24,7 +24,7 @@ export default function Nav({ ready, language, setLanguage }) {
             yPercent: 0,
             opacity: 1,
             duration: 0.9,
-            delay: 0.5,
+            delay: 4,
             ease: 'power3.out',
         })
     },

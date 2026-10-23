@@ -31,8 +31,8 @@ export default function Intro({ onDone, language }) {
                 .from('.intro__meta', {
                     y: 8,
                     opacity: 0,
-                    duration: 0.6,
-                    ease: 'power2.out',
+                    duration: 0.9,
+                    ease: 'power3.out',
                 }, '-=0.55')
                 .to('.intro__bar', {
                     scaleX: 1,
@@ -56,7 +56,7 @@ export default function Intro({ onDone, language }) {
                 }, '+=0.25')
                 .to(root.current, {
                     yPercent: -100,
-                    duration: 0.9,
+                    duration: 1.3,
                     ease: 'power4.inOut',
                     onStart: onDone,
                 })
